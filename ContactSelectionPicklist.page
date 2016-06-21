@@ -1,0 +1,20 @@
+<apex:page standardController="Account" extensions="ContactSelectionController">
+    <apex:form >
+        <apex:selectlist id="contactList" value="{!contactSelected}" size="1" title="Manager">
+            <apex:selectOptions value="{!contacts}"></apex:selectOptions>
+        </apex:selectlist>
+        <apex:includeScript value="/support/console/36.0/integration.js"/>
+        <script>
+            function updatePage(){
+                if (sforce.console.isInConsole())
+                    sforce.console.getFocusedSubtabId(function(result){
+                        sforce.console.refreshSubtabById(result.id, true);
+                    });
+                else
+                    window.top.location = '/{!Account.Id}';
+            }
+        </script>
+        
+        <apex:commandLink value="Select!" action="{!SaveChanges}" oncomplete="javascript:updatePage();" target="_parent" styleClass="btn" style="text-decoration:none;padding:4px;"/>        
+    </apex:form>
+</apex:page>
