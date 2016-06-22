@@ -18,9 +18,6 @@ public with sharing class ContactSelectionController {
     	this.contactSelected = (acc.Main_Contact__c != null) ? acc.Main_Contact__r.FirstName + ' ' + acc.Main_Contact__r.LastName : '--None--';
     }
     
-    //  When VF render the <apex:selectOptions> get info from this List.
-    //  The SelectOption ojbects contains a <key,value> like a Map<Key,Value>. In this case, we save data
-    //      <ContactId,Contact Name> key for internal use, value will be rendered to the user.
     /**
       * @desc When VF render the <apex:selectOptions> get info from this returned list.
       *     SelectOption objects contains <key,value> like a Map. In this case, we store 
