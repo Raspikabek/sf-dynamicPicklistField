@@ -1,9 +1,11 @@
 <apex:page standardController="Account" extensions="ContactSelectionController">
     <apex:form >
+    <!-- In apex:selectOptions render all values returned vía controller in our method getContacts() -->
         <apex:selectlist id="contactList" value="{!contactSelected}" size="1" title="Manager">
             <apex:selectOptions value="{!contacts}"></apex:selectOptions>
         </apex:selectlist>
         <apex:includeScript value="/support/console/36.0/integration.js"/>
+        <!-- if we are in console mode, refresh current Console Tab, else refresh WebBrowser -->
         <script>
             function updatePage(){
                 if (sforce.console.isInConsole())
@@ -14,7 +16,7 @@
                     window.top.location = '/{!Account.Id}';
             }
         </script>
-        
+        <!-- When click, execute Savechanges() function and onComplete, execute JS script -->
         <apex:commandLink value="Select!" action="{!SaveChanges}" oncomplete="javascript:updatePage();" target="_parent" styleClass="btn" style="text-decoration:none;padding:4px;"/>        
     </apex:form>
 </apex:page>
